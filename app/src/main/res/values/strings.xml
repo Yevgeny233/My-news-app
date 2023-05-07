@@ -10,7 +10,7 @@
     <string name="wall_street_journal_news">Wall Street Journal News</string>
     <string name="bbc_news">BBC News</string>
     <string name="ua_news">UA News</string>
-    <string name="database_is_empty">database is empty</string>
+    <string name="you_chose_nothing">you chose nothing</string>
     <string name="internet_is_connected">Internet is connected</string>
     <string name="internet_is_not_connected">Internet is not connected</string>
 </resources>

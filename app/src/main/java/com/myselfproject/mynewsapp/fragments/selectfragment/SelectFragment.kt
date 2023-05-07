@@ -44,14 +44,14 @@ class SelectFragment : Fragment(), OnButtonClicker, OnArticleClicker {
 
         binding.recycleView.adapter = dataAdapter
 
-            dataViewModel.dataBaseNews.observe(viewLifecycleOwner) { newsList ->
-                if (newsList.isNotEmpty()){
-                    binding.dataBaseIsClear.visibility = View.GONE
-                    dataAdapter.updateList(newsList)
-                }else{
-                    binding.dataBaseIsClear.visibility = View.VISIBLE
-                    dataAdapter.updateList(newsList)
-                }
+        dataViewModel.dataBaseNews.observe(viewLifecycleOwner) { newsList ->
+            if (newsList.isNotEmpty()) {
+                binding.dataBaseIsClear.visibility = View.GONE
+                dataAdapter.updateList(newsList)
+            } else {
+                binding.dataBaseIsClear.visibility = View.VISIBLE
+                dataAdapter.updateList(newsList)
+            }
         }
     }
 
