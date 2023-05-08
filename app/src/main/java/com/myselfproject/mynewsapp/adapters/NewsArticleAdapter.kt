@@ -9,20 +9,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.myselfproject.mynewsapp.R
 import com.myselfproject.mynewsapp.databinding.NewsItemBinding
 import com.myselfproject.mynewsapp.models.NewsArticle
 import com.myselfproject.mynewsapp.usecases.OnItemClickListener
-import com.myselfproject.mynewsapp.usecases.OnSaveButtonClicker
-import com.myselfproject.mynewsapp.usecases.OnShareButtonClicker
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class NewsArticleAdapter(
-    private val onItemClickListener: OnItemClickListener,
-    private val onSaveButtonClicker: OnSaveButtonClicker,
-    private val onShareButtonClicker: OnShareButtonClicker
+    private val onItemClickListener: OnItemClickListener
 ) : ListAdapter<NewsArticle, NewsArticleAdapter.NewsHolder>(
     DiffCallback
 ) {
@@ -61,10 +56,10 @@ class NewsArticleAdapter(
             }
         }
         holder.newsItemBinding.buttonToSave.setOnClickListener {
-            onSaveButtonClicker.onSaveButtonClicker(item)
+            onItemClickListener.onSaveButtonClicker(item)
         }
         holder.newsItemBinding.buttonToShare.setOnClickListener {
-            onShareButtonClicker.onShareButtonClicker(item)
+            onItemClickListener.onShareButtonClicker(item)
         }
     }
 

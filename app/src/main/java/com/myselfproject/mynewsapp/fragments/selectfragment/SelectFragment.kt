@@ -11,11 +11,10 @@ import com.myselfproject.mynewsapp.databinding.FragmentSelectBinding
 import com.myselfproject.mynewsapp.models.DataArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
 import com.myselfproject.mynewsapp.usecases.Clicker
-import com.myselfproject.mynewsapp.usecases.OnArticleClicker
-import com.myselfproject.mynewsapp.usecases.OnButtonClicker
+import com.myselfproject.mynewsapp.usecases.OnDataArticleClicker
 
 
-class SelectFragment : Fragment(), OnButtonClicker, OnArticleClicker {
+class SelectFragment : Fragment(), OnDataArticleClicker {
     private lateinit var binding: FragmentSelectBinding
     private lateinit var dataAdapter: SelectAdapter
     private lateinit var dataViewModel: DataBaseViewModel
@@ -32,7 +31,7 @@ class SelectFragment : Fragment(), OnButtonClicker, OnArticleClicker {
             DataBaseViewModelFactory(this.requireContext())
         )[DataBaseViewModel::class.java]
 
-        dataAdapter = SelectAdapter(this, this)
+        dataAdapter = SelectAdapter(this)
 
         networkConnection = NetworkConnection(this@SelectFragment.requireContext())
 

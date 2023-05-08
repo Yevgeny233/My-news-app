@@ -7,18 +7,15 @@ import androidx.annotation.RequiresApi
 import androidx.collection.arraySetOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.myselfproject.mynewsapp.databinding.DataBaseItemBinding
 import com.myselfproject.mynewsapp.models.DataArticle
-import com.myselfproject.mynewsapp.usecases.OnArticleClicker
-import com.myselfproject.mynewsapp.usecases.OnButtonClicker
+import com.myselfproject.mynewsapp.usecases.OnDataArticleClicker
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
 
 class SelectAdapter(
-    private val onArticleClicker: OnArticleClicker, private val onButtonClicker: OnButtonClicker
+    private val onDataArticleClicker: OnDataArticleClicker
 ) : RecyclerView.Adapter<SelectAdapter.SelectNewsHolder>() {
 
     private val allDataArticle = arraySetOf<DataArticle>()
@@ -48,13 +45,13 @@ class SelectAdapter(
             simpleDateFormat.parse(s)?.let { formatter.format(it) }
         }
         holder.selectBinding.cardNews.setOnClickListener {
-            onArticleClicker.onArticleClicker(item)
+            onDataArticleClicker.onArticleClicker(item)
         }
         holder.selectBinding.buttonToDelete.setOnClickListener {
-            onButtonClicker.deleteButtonClick(item)
+            onDataArticleClicker.deleteButtonClick(item)
         }
         holder.selectBinding.buttonToShare.setOnClickListener {
-            onButtonClicker.shareButtonClick(item)
+            onDataArticleClicker.shareButtonClick(item)
         }
     }
 

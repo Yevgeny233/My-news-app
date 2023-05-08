@@ -16,7 +16,7 @@ import com.myselfproject.mynewsapp.network.NetworkService
 import com.myselfproject.mynewsapp.usecases.*
 
 
-class UANewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, OnShareButtonClicker {
+class UANewsFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentUANewsBinding
     private lateinit var newsArticleAdapter: NewsArticleAdapter
@@ -40,8 +40,6 @@ class UANewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, OnS
 
         newsArticleAdapter =
             NewsArticleAdapter(
-                this,
-                this,
                 this
             )
 

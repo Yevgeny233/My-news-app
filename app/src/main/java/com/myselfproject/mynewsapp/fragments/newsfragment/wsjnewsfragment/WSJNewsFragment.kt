@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.myselfproject.mynewsapp.usecases.NewsRepository
 import com.myselfproject.mynewsapp.adapters.NewsArticleAdapter
 import com.myselfproject.mynewsapp.databinding.FragmentWSJNewsBinding
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
@@ -15,12 +14,11 @@ import com.myselfproject.mynewsapp.models.NewsArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
 import com.myselfproject.mynewsapp.network.NetworkService
 import com.myselfproject.mynewsapp.usecases.Clicker
+import com.myselfproject.mynewsapp.usecases.NewsRepository
 import com.myselfproject.mynewsapp.usecases.OnItemClickListener
-import com.myselfproject.mynewsapp.usecases.OnSaveButtonClicker
-import com.myselfproject.mynewsapp.usecases.OnShareButtonClicker
 
 
-class WSJNewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, OnShareButtonClicker {
+class WSJNewsFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentWSJNewsBinding
     private lateinit var wsjViewModel: WSJViewModel
@@ -45,8 +43,6 @@ class WSJNewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, On
         )[WSJViewModel::class.java]
 
         adapter = NewsArticleAdapter(
-            this,
-            this,
             this
         )
 

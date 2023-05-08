@@ -16,7 +16,7 @@ import com.myselfproject.mynewsapp.network.NetworkConnection
 import com.myselfproject.mynewsapp.network.NetworkService
 import com.myselfproject.mynewsapp.usecases.*
 
-class BBCNewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, OnShareButtonClicker {
+class BBCNewsFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentBBCBinding
     private lateinit var newsArticleAdapter: NewsArticleAdapter
     private lateinit var bbcViewModel: BBCViewModel
@@ -39,8 +39,6 @@ class BBCNewsFragment : Fragment(), OnItemClickListener, OnSaveButtonClicker, On
 
         newsArticleAdapter =
             NewsArticleAdapter(
-                this,
-                this,
                 this
             )
 
