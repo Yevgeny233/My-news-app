@@ -9,6 +9,7 @@ import android.webkit.WebView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.myselfproject.mynewsapp.databinding.FragmentWebBinding
+import com.myselfproject.mynewsapp.network.KEY_URL
 
 class WebFragment : Fragment() {
     private lateinit var binding: FragmentWebBinding
@@ -40,7 +41,7 @@ class WebFragment : Fragment() {
             }
         }
 
-        val urlString = requireArguments().getString("keyUrl")
+        val urlString = requireArguments().getString(KEY_URL)
         binding.webView.loadUrl(urlString!!)
 
         requireActivity().onBackPressedDispatcher.addCallback(

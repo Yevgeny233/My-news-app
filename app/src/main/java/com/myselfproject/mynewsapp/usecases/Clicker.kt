@@ -9,6 +9,7 @@ import com.myselfproject.mynewsapp.R
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
 import com.myselfproject.mynewsapp.models.DataArticle
 import com.myselfproject.mynewsapp.models.NewsArticle
+import com.myselfproject.mynewsapp.network.KEY_URL
 import com.myselfproject.mynewsapp.network.NetworkConnection
 
 class Clicker {
@@ -82,7 +83,7 @@ class Clicker {
         networkConnection.observe(fragment.viewLifecycleOwner) { isConnected ->
             if (isConnected) {
                 val bundle = Bundle()
-                bundle.putString("keyUrl", newsArticle.url)
+                bundle.putString(KEY_URL, newsArticle.url)
                 fragment.findNavController().navigate(R.id.webFragment, bundle)
             } else {
                 Toast.makeText(
@@ -101,7 +102,7 @@ class Clicker {
         networkConnection.observe(fragment.viewLifecycleOwner) { isConnected ->
             if (isConnected) {
                 val bundle = Bundle()
-                bundle.putString("keyUrl", dataArticle.url)
+                bundle.putString(KEY_URL, dataArticle.url)
                 fragment.findNavController().navigate(R.id.webFragment, bundle)
             } else {
                 Toast.makeText(
