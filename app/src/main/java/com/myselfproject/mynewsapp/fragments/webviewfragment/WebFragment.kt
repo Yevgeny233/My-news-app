@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import com.myselfproject.mynewsapp.KEY_URL
 import com.myselfproject.mynewsapp.databinding.FragmentWebBinding
-import com.myselfproject.mynewsapp.network.KEY_URL
 
 class WebFragment : Fragment() {
     private lateinit var binding: FragmentWebBinding

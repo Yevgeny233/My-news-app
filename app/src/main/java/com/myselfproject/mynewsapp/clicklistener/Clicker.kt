@@ -1,15 +1,15 @@
-package com.myselfproject.mynewsapp.usecases
+package com.myselfproject.mynewsapp.clicklistener
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.myselfproject.mynewsapp.KEY_URL
 import com.myselfproject.mynewsapp.R
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
 import com.myselfproject.mynewsapp.models.DataArticle
 import com.myselfproject.mynewsapp.models.NewsArticle
-import com.myselfproject.mynewsapp.network.KEY_URL
 import com.myselfproject.mynewsapp.network.NetworkConnection
 
 class Clicker {

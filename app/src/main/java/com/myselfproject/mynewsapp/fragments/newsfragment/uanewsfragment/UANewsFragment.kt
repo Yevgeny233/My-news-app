@@ -5,38 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.myselfproject.mynewsapp.adapters.NewsArticleAdapter
+import com.myselfproject.mynewsapp.clicklistener.Clicker
+import com.myselfproject.mynewsapp.clicklistener.OnItemClickListener
 import com.myselfproject.mynewsapp.databinding.FragmentUANewsBinding
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
-import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModelFactory
 import com.myselfproject.mynewsapp.models.NewsArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
-import com.myselfproject.mynewsapp.network.NetworkService
-import com.myselfproject.mynewsapp.usecases.*
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class UANewsFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentUANewsBinding
     private lateinit var newsArticleAdapter: NewsArticleAdapter
     private lateinit var networkConnection: NetworkConnection
-    private lateinit var uaViewModel: UAViewModel
-    private val networkService = NetworkService.getInstance()
-    private lateinit var dataViewModel: DataBaseViewModel
+    private val uaViewModel: UAViewModel by viewModels()
+    private val dataViewModel: DataBaseViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentUANewsBinding.inflate(inflater, container, false)
-
-        dataViewModel = ViewModelProvider(
-            this, DataBaseViewModelFactory(this.requireContext())
-        )[DataBaseViewModel::class.java]
-
-        uaViewModel = ViewModelProvider(
-            this, UAViewModelFactory(NewsRepository(networkService))
-        )[UAViewModel::class.java]
 
         newsArticleAdapter =
             NewsArticleAdapter(

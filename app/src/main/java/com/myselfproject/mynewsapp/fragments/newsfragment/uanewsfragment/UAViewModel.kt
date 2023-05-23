@@ -1,15 +1,20 @@
 package com.myselfproject.mynewsapp.fragments.newsfragment.uanewsfragment
 
-import androidx.lifecycle.*
-import com.myselfproject.mynewsapp.usecases.NewsRepository
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.myselfproject.mynewsapp.di.NewsRepository
 import com.myselfproject.mynewsapp.models.NewsItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-
-class UAViewModel constructor(private val repository: NewsRepository) : ViewModel() {
+@HiltViewModel
+class UAViewModel @Inject constructor(private val repository: NewsRepository) : ViewModel() {
 
     private var _uaNewsItem = MutableLiveData<NewsItem>()
     val uaNewsItem: LiveData<NewsItem> = _uaNewsItem
@@ -45,13 +50,13 @@ class UAViewModel constructor(private val repository: NewsRepository) : ViewMode
     }
 }
 
-class UAViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(UAViewModel::class.java)) {
-            UAViewModel(this.repository) as T
-        } else {
-            throw IllegalArgumentException("ViewModel Not Found")
-        }
-    }
-
-}
+//class UAViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        return if (modelClass.isAssignableFrom(UAViewModel::class.java)) {
+//            UAViewModel(this.repository) as T
+//        } else {
+//            throw IllegalArgumentException("ViewModel Not Found")
+//        }
+//    }
+//
+//}

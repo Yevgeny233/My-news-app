@@ -6,41 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.myselfproject.mynewsapp.adapters.NewsArticleAdapter
+import com.myselfproject.mynewsapp.clicklistener.Clicker
+import com.myselfproject.mynewsapp.clicklistener.OnItemClickListener
 import com.myselfproject.mynewsapp.databinding.FragmentBBCBinding
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
-import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModelFactory
 import com.myselfproject.mynewsapp.models.NewsArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
-import com.myselfproject.mynewsapp.network.NetworkService
-import com.myselfproject.mynewsapp.usecases.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BBCNewsFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentBBCBinding
     private lateinit var newsArticleAdapter: NewsArticleAdapter
-    private lateinit var bbcViewModel: BBCViewModel
-    private val networkService = NetworkService.getInstance()
+    private val bbcViewModel: BBCViewModel by viewModels()
     private lateinit var networkConnection: NetworkConnection
-    private lateinit var dataViewModel: DataBaseViewModel
+    private val dataViewModel: DataBaseViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentBBCBinding.inflate(inflater, container, false)
 
-        dataViewModel = ViewModelProvider(
-            this, DataBaseViewModelFactory(this.requireContext())
-        )[DataBaseViewModel::class.java]
-
-        bbcViewModel = ViewModelProvider(
-            this, BBCViewModelFactory(NewsRepository(networkService))
-        )[BBCViewModel::class.java]
-
-        newsArticleAdapter =
-            NewsArticleAdapter(
-                this
-            )
+        newsArticleAdapter = NewsArticleAdapter(
+            this
+        )
 
         networkConnection = NetworkConnection(this@BBCNewsFragment.requireContext())
 

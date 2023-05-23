@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.myselfproject.mynewsapp.adapters.SelectAdapter
+import com.myselfproject.mynewsapp.clicklistener.Clicker
+import com.myselfproject.mynewsapp.clicklistener.OnDataArticleClicker
 import com.myselfproject.mynewsapp.databinding.FragmentSelectBinding
 import com.myselfproject.mynewsapp.models.DataArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
-import com.myselfproject.mynewsapp.usecases.Clicker
-import com.myselfproject.mynewsapp.usecases.OnDataArticleClicker
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SelectFragment : Fragment(), OnDataArticleClicker {
     private lateinit var binding: FragmentSelectBinding
     private lateinit var dataAdapter: SelectAdapter
-    private lateinit var dataViewModel: DataBaseViewModel
+    private val dataViewModel: DataBaseViewModel by viewModels()
     private lateinit var networkConnection: NetworkConnection
 
     override fun onCreateView(
@@ -25,11 +26,6 @@ class SelectFragment : Fragment(), OnDataArticleClicker {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentSelectBinding.inflate(inflater, container, false)
-
-        dataViewModel = ViewModelProvider(
-            this,
-            DataBaseViewModelFactory(this.requireContext())
-        )[DataBaseViewModel::class.java]
 
         dataAdapter = SelectAdapter(this)
 

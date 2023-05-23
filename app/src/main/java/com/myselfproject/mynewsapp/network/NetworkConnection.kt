@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.myselfproject.mynewsapp.network
 
 
@@ -12,7 +14,9 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 
 @Suppress("DEPRECATION")
-class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
+
+class NetworkConnection(private val context: Context) :
+    LiveData<Boolean>() {
 
     private val connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -29,8 +33,7 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
             }
             else -> {
                 context.registerReceiver(
-                    networkReceiver,
-                    IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+                    networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
                 )
             }
         }
@@ -58,7 +61,7 @@ class NetworkConnection(private val context: Context) : LiveData<Boolean>() {
         postValue(activeNetworkConnection?.isConnected == true)
     }
 
-    private val networkReceiver= object : BroadcastReceiver() {
+    private val networkReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             updateNetworkConnection()
         }

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.myselfproject.mynewsapp.clicklistener.OnItemClickListener
 import com.myselfproject.mynewsapp.databinding.NewsItemBinding
 import com.myselfproject.mynewsapp.models.NewsArticle
-import com.myselfproject.mynewsapp.usecases.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 

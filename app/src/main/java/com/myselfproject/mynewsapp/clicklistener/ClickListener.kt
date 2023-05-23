@@ -1,4 +1,4 @@
-package com.myselfproject.mynewsapp.usecases
+package com.myselfproject.mynewsapp.clicklistener
 
 import com.myselfproject.mynewsapp.models.DataArticle
 import com.myselfproject.mynewsapp.models.NewsArticle

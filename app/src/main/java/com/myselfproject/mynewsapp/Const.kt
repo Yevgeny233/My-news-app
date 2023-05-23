@@ -1,4 +1,4 @@
-package com.myselfproject.mynewsapp.network
+package com.myselfproject.mynewsapp
 
 
 const val BASE_URL = "https://newsapi.org/"

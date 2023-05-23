@@ -1,9 +1,10 @@
-package com.myselfproject.mynewsapp.usecases
+package com.myselfproject.mynewsapp.di
 
 import com.myselfproject.mynewsapp.network.NetworkService
+import javax.inject.Inject
 
 
-class NewsRepository constructor(private val networkService: NetworkService) {
+class NewsRepository @Inject constructor(private val networkService: NetworkService) {
 
     suspend fun getWSJNews() = networkService.getWSJNewsItem()
 

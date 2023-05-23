@@ -5,27 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.myselfproject.mynewsapp.adapters.NewsArticleAdapter
+import com.myselfproject.mynewsapp.clicklistener.Clicker
+import com.myselfproject.mynewsapp.clicklistener.OnItemClickListener
 import com.myselfproject.mynewsapp.databinding.FragmentWSJNewsBinding
 import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModel
-import com.myselfproject.mynewsapp.fragments.selectfragment.DataBaseViewModelFactory
 import com.myselfproject.mynewsapp.models.NewsArticle
 import com.myselfproject.mynewsapp.network.NetworkConnection
-import com.myselfproject.mynewsapp.network.NetworkService
-import com.myselfproject.mynewsapp.usecases.Clicker
-import com.myselfproject.mynewsapp.usecases.NewsRepository
-import com.myselfproject.mynewsapp.usecases.OnItemClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class WSJNewsFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentWSJNewsBinding
-    private lateinit var wsjViewModel: WSJViewModel
-    private val networkService = NetworkService.getInstance()
+    private val wsjViewModel: WSJViewModel by viewModels()
     private lateinit var adapter: NewsArticleAdapter
     private lateinit var networkConnection: NetworkConnection
-    private lateinit var dataViewModel: DataBaseViewModel
+    private val dataViewModel: DataBaseViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -33,14 +30,6 @@ class WSJNewsFragment : Fragment(), OnItemClickListener {
     ): View {
 
         binding = FragmentWSJNewsBinding.inflate(inflater, container, false)
-
-        dataViewModel = ViewModelProvider(
-            this, DataBaseViewModelFactory(this.requireContext())
-        )[DataBaseViewModel::class.java]
-
-        wsjViewModel = ViewModelProvider(
-            this, WSJViewModelFactory(NewsRepository(networkService))
-        )[WSJViewModel::class.java]
 
         adapter = NewsArticleAdapter(
             this

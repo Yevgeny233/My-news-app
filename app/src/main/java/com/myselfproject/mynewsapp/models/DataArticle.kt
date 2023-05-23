@@ -2,9 +2,10 @@ package com.myselfproject.mynewsapp.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "data_article")
+@Entity(tableName = "data_article", indices = [Index(value = ["url"], unique = true)])
 class DataArticle(
     @ColumnInfo("source") var source: String?,
     @ColumnInfo("author") var author: String?,

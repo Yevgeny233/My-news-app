@@ -11,8 +11,9 @@ import com.myselfproject.mynewsapp.R
 import com.myselfproject.mynewsapp.adapters.ViewPagerAdapter
 import com.myselfproject.mynewsapp.databinding.FragmentNewsBinding
 import com.myselfproject.mynewsapp.network.NetworkConnection
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
     private lateinit var networkConnection: NetworkConnection

@@ -1,10 +1,11 @@
-package com.myselfproject.mynewsapp.usecases
+package com.myselfproject.mynewsapp.di
 
 import com.myselfproject.mynewsapp.databae.ArticleDAO
 import com.myselfproject.mynewsapp.models.DataArticle
+import javax.inject.Inject
 
 
-class DataRepository(private val articleDAO: ArticleDAO) {
+class DataRepository @Inject constructor(private val articleDAO: ArticleDAO) {
 
     fun getData() = articleDAO.getData()
 

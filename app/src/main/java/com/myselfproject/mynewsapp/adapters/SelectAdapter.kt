@@ -7,9 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.collection.arraySetOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.myselfproject.mynewsapp.clicklistener.OnDataArticleClicker
 import com.myselfproject.mynewsapp.databinding.DataBaseItemBinding
 import com.myselfproject.mynewsapp.models.DataArticle
-import com.myselfproject.mynewsapp.usecases.OnDataArticleClicker
 import java.text.SimpleDateFormat
 import java.util.*
 

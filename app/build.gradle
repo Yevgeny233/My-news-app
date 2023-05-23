@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     // add below plugin
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 
 }
 
@@ -38,6 +39,9 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
+    }
+    kapt {
+        correctErrorTypes true
     }
 }
 
@@ -85,6 +89,9 @@ dependencies {
     implementation "com.github.bumptech.glide:okhttp3-integration:4.7.1"
     // Material
     implementation 'com.google.android.material:material:1.8.0'
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
 
 }

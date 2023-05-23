@@ -1,14 +1,20 @@
 package com.myselfproject.mynewsapp.fragments.newsfragment.bbcnewsfragment
 
-import androidx.lifecycle.*
-import com.myselfproject.mynewsapp.usecases.NewsRepository
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.myselfproject.mynewsapp.di.NewsRepository
 import com.myselfproject.mynewsapp.models.NewsItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class BBCViewModel constructor(private val repository: NewsRepository) : ViewModel() {
+@HiltViewModel
+class BBCViewModel @Inject constructor(private val repository: NewsRepository) : ViewModel() {
 
     private var _bbcNewsItem = MutableLiveData<NewsItem>()
     val bbcNewsItem: LiveData<NewsItem> = _bbcNewsItem
@@ -41,17 +47,5 @@ class BBCViewModel constructor(private val repository: NewsRepository) : ViewMod
     override fun onCleared() {
         super.onCleared()
         viewModelScope.cancel()
-    }
-}
-
-class BBCViewModelFactory(
-    private val repository: NewsRepository
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(BBCViewModel::class.java)) {
-            BBCViewModel(this.repository) as T
-        } else {
-            throw IllegalArgumentException("ViewModel Not Found")
-        }
     }
 }
