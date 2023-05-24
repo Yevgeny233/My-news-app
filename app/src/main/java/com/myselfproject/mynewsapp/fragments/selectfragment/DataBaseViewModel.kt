@@ -1,6 +1,6 @@
 package com.myselfproject.mynewsapp.fragments.selectfragment
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myselfproject.mynewsapp.di.DataRepository
@@ -16,21 +16,23 @@ class DataBaseViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
 
-    private var _dataBaseNews: LiveData<List<DataArticle>> = repository.getData()
+    private var _dataBaseNews = MutableLiveData<List<DataArticle>>()
     val dataBaseNews = _dataBaseNews
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getData().collect { dataArticleList ->
+                _dataBaseNews.postValue(dataArticleList.toList())
+            }
+        }
+    }
 
     fun deleteArticle(dataArticle: DataArticle) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteData(dataArticle)
-        updateListNews()
     }
 
     fun addArticle(dataArticle: DataArticle) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertData(dataArticle)
-        updateListNews()
-    }
-
-    private fun updateListNews() {
-        _dataBaseNews = repository.getData()
     }
 
     override fun onCleared() {

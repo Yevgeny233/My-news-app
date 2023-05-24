@@ -1,17 +1,17 @@
 package com.myselfproject.mynewsapp.databae
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.myselfproject.mynewsapp.models.DataArticle
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface ArticleDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(dataArticle: DataArticle)
 
     @Query("SELECT * FROM data_article")
-    fun getData(): LiveData<List<DataArticle>>
+    fun getData(): Flow<List<DataArticle>>
 
     @Delete
     suspend fun deleteData(dataArticle: DataArticle)
